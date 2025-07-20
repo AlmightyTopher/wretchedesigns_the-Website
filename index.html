@@ -1,14 +1,70 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wretched Designs</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+<body class="min-h-screen bg-matte-black text-white relative antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-neon-magenta/30 bg-[#111111bb] backdrop-blur-md shadow-neon">
+        <nav class="container flex items-center justify-between py-4">
+            <a href="index.html" class="flex items-center gap-3 select-none">
+                <span class="glitch text-2xl font-header tracking-wide drop-shadow-md select-none" style="color: #3A7CA5">Wretched</span>
+                <span class="font-header font-bold text-acid-magenta glow text-lg tracking-widest select-none">Designs</span>
+            </a>
+            <div class="flex gap-6">
+                <a href="shop.html" class="transition neon hover:text-electric-purple hover:drop-shadow-[0_0_10px_#FF00CC]">Shop</a>
+                <a href="gallery.html" class="transition neon hover:text-acid-magenta">Gallery</a>
+                <a href="about.html" class="transition neon hover:text-electric-purple">About</a>
+                <a href="contact.html" class="transition neon hover:text-acid-magenta">Contact</a>
+                <a href="blogs.html" class="transition neon hover:text-acid-magenta">Blog</a>
+                <a href="#" class="text-white">🛒 (Cart)</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container pt-10 pb-20 min-h-[80vh] flex flex-col">
+        <section class="relative flex flex-col items-center justify-center min-h-[80vh] w-full overflow-hidden p-4">
+            <div class="absolute inset-0 -z-10 bg-hero-blocker">
+                <img
+                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80"
+                    alt="Cyberpunk neon city background placeholder"
+                    class="object-cover w-full h-full brightness-75 contrast-150 blur-[2px] scale-105"
+                    style="filter: saturate(1.2) blur(2px);"
+                />
+                <div class="absolute inset-0 bg-gradient-to-b from-[#111111dd] to-[#1a0033ee] mix-blend-multiply"></div>
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto z-10">
+                <h1 class="glitch-header glitch font-header text-5xl md:text-7xl mb-7 neon leading-tight tracking-[0.11em]" style="color: #3A7CA5">
+                    Born from Chaos. Built to Disturb.
+                </h1>
+                <p class="text-xl md:text-2xl font-mono text-white/90 mb-8">
+                    <span class="neon">Custom Printed Apparel · Art & Relics · Nightlife For The Unrepentant</span>
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6 mt-7">
+                    <a href="shop.html" class="px-8 py-4 text-lg font-header bg-electric-purple text-white rounded-lg shadow-neon neon transition duration-200 hover:scale-105 hover:bg-acid-magenta focus:ring-4 focus:ring-acid-magenta/30 focus:outline-none">
+                        Shop Now
+                    </a>
+                    <a href="gallery.html" class="px-8 py-4 text-lg font-header border-2 border-acid-magenta text-acid-magenta rounded-lg shadow-neon hover:bg-acid-magenta/20 neon transition duration-200 hover:scale-105 focus:ring-4 focus:ring-electric-purple/30 focus:outline-none">
+                        View Art Gallery
+                    </a>
+                </div>
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 bottom-4 w-32 h-2 bg-gradient-to-r from-electric-purple via-acid-magenta to-neon-blue rounded-full animate-pulse shadow-neon opacity-50"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-50 pointer-events-auto">
+        <div class="container py-6 text-center text-xs text-white/70">
+            &copy; 2025 Wretched Designs. All rights reserved.
+        </div>
+    </footer>
+
 </body>
 </html>
