@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Wretched Designs</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlroBq+u8N9fS5rG91y+0qjX8d7D1f6+T3z1F/S9Nf/5z/k+b6s8J/r8q/8v/g5f/0F/7G/9Zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="min-h-screen bg-matte-black text-white relative antialiased">
 
@@ -28,11 +29,47 @@
 
     <!-- Main Content -->
     <main class="container pt-10 pb-20 min-h-[80vh] flex flex-col">
-        <section class="flex flex-col items-center justify-center min-h-[60vh] w-full p-4">
-            <h1 class="glitch-header glitch font-header text-5xl md:text-7xl mb-7 neon leading-tight tracking-[0.11em]" style="color: #3A7CA5">
-                Contact Us
-            </h1>
-            <p class="text-xl md:text-2xl font-mono text-white/90">Get in touch!</p>
+        <section class="w-full p-4">
+            <h1 class="glitch-header glitch font-header text-4xl md:text-5xl mb-10 text-center neon" style="color: #3A7CA5">Get in Touch</h1>
+
+            <div class="max-w-3xl mx-auto bg-gradient-to-br from-[#1c002e] to-[#0c001a] rounded-lg p-8 shadow-neon-sm border border-neon-magenta/20">
+                <p class="text-white/80 text-center mb-8">Have questions, custom requests, or just want to share your thoughts? We'd love to hear from you!</p>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-neon-magenta text-sm font-bold mb-2">Name:</label>
+                        <input type="text" id="name" name="name" class="shadow-inner appearance-none border border-electric-purple/50 rounded w-full py-3 px-4 bg-matte-black text-white leading-tight focus:outline-none focus:ring-2 focus:ring-electric-purple focus:border-transparent" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-neon-magenta text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" name="email" class="shadow-inner appearance-none border border-electric-purple/50 rounded w-full py-3 px-4 bg-matte-black text-white leading-tight focus:outline-none focus:ring-2 focus:ring-electric-purple focus:border-transparent" placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-neon-magenta text-sm font-bold mb-2">Subject:</label>
+                        <input type="text" id="subject" name="subject" class="shadow-inner appearance-none border border-electric-purple/50 rounded w-full py-3 px-4 bg-matte-black text-white leading-tight focus:outline-none focus:ring-2 focus:ring-electric-purple focus:border-transparent" placeholder="Topic of your message">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-neon-magenta text-sm font-bold mb-2">Message:</label>
+                        <textarea id="message" name="message" rows="6" class="shadow-inner appearance-none border border-electric-purple/50 rounded w-full py-3 px-4 bg-matte-black text-white leading-tight focus:outline-none focus:ring-2 focus:ring-electric-purple focus:border-transparent" placeholder="Your message..."></textarea>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="px-8 py-4 text-lg font-header bg-electric-purple text-white rounded-lg shadow-neon neon transition duration-200 hover:scale-105 hover:bg-acid-magenta focus:ring-4 focus:ring-acid-magenta/30 focus:outline-none">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-10 text-center text-white/70">
+                    <p class="mb-2">Or connect with us directly:</p>
+                    <p class="text-neon-magenta font-bold mb-2">Email: info@wretcheddesigns.com</p>
+                    <p class="text-neon-magenta font-bold">Socials: @WretchedDesigns (Placeholder Links Below)</p>
+                    <div class="flex justify-center gap-6 mt-4 text-3xl">
+                        <a href="https://instagram.com/wretcheddesigns" target="_blank" aria-label="Instagram" class="text-electric-purple hover:text-acid-magenta transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/wretcheddesigns" target="_blank" aria-label="Twitter" class="text-electric-purple hover:text-acid-magenta transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="https://facebook.com/wretcheddesigns" target="_blank" aria-label="Facebook" class="text-electric-purple hover:text-acid-magenta transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
