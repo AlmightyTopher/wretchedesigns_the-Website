@@ -46,35 +46,6 @@ const nextConfig = {
   experimental: {
     typedRoutes: false,
   },
-  async rewrites() {
-    return [
-      // Serve static HTML files for main site routes (NOT admin routes)
-      {
-        source: '/',
-        destination: '/index.html',
-      },
-      {
-        source: '/gallery',
-        destination: '/gallery.html',
-      },
-      {
-        source: '/shop',
-        destination: '/shop.html',
-      },
-      {
-        source: '/about',
-        destination: '/about.html',
-      },
-      {
-        source: '/contact',
-        destination: '/contact.html',
-      },
-      {
-        source: '/blogs',
-        destination: '/blogs.html',
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
