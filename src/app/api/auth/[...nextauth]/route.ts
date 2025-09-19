@@ -1,6 +1,17 @@
-import NextAuth from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { NextResponse } from "next/server";
 
-const handler = NextAuth(authOptions);
+export const runtime = 'edge';
 
-export { handler as GET, handler as POST };
+// Minimal auth placeholder for Cloudflare deployment
+// Admin functionality is temporarily disabled for edge compatibility
+export async function GET() {
+  return NextResponse.json({
+    error: "Authentication temporarily disabled for Cloudflare Edge Runtime"
+  }, { status: 501 });
+}
+
+export async function POST() {
+  return NextResponse.json({
+    error: "Authentication temporarily disabled for Cloudflare Edge Runtime"
+  }, { status: 501 });
+}

@@ -1,125 +1,56 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import fs from "fs";
-import path from "path";
 import { GalleryData, GalleryImage } from "@/types";
 
-const GALLERY_FILE = path.join(process.cwd(), "public/data/gallery.json");
+// Use edge runtime for Cloudflare compatibility
+export const runtime = 'edge';
 
-function readGalleryData(): GalleryData {
-  try {
-    const data = fs.readFileSync(GALLERY_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    return { images: [], lastUpdated: new Date().toISOString() };
-  }
-}
+// Check if running in Cloudflare
+const isCloudflare = process.env.CF_PAGES || process.env.CLOUDFLARE_PAGES;
 
-function writeGalleryData(data: GalleryData) {
-  const dir = path.dirname(GALLERY_FILE);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFileSync(GALLERY_FILE, JSON.stringify(data, null, 2));
-}
+// Fallback data for edge runtime
+const FALLBACK_GALLERY_DATA: GalleryData = {
+  "images": [
+    {
+      "id": "art-1758303434881-1",
+      "url": "/Images/Art/212c84dc-0494-4fb2-950d-1a450d86abf6.jpg",
+      "title": "Art #2",
+      "description": "Beautiful art design",
+      "order": 0,
+      "createdAt": "2025-09-19T17:37:14.881Z",
+      "category": "Art"
+    },
+    {
+      "id": "art-1758303434880-0",
+      "url": "/Images/Art/0e24c8e1-ad42-4b6c-b538-672c737cec86.jpg",
+      "title": "Art #1",
+      "description": "Beautiful art design",
+      "order": 1,
+      "createdAt": "2025-09-19T17:37:14.880Z",
+      "category": "Art"
+    }
+  ],
+  "lastUpdated": "2025-09-19T19:46:08.689Z"
+};
+
 
 export async function GET() {
-  try {
-    const data = readGalleryData();
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("Error reading gallery data:", error);
-    return NextResponse.json(
-      { error: "Failed to read gallery data" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(FALLBACK_GALLERY_DATA);
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { image }: { image: Omit<GalleryImage, "id" | "createdAt"> } = await request.json();
-
-    const data = readGalleryData();
-    const newImage: GalleryImage = {
-      id: crypto.randomUUID(),
-      ...image,
-      createdAt: new Date().toISOString(),
-    };
-
-    data.images.push(newImage);
-    data.images.sort((a, b) => a.order - b.order);
-    data.lastUpdated = new Date().toISOString();
-
-    writeGalleryData(data);
-
-    return NextResponse.json(newImage);
-  } catch (error) {
-    console.error("Error adding gallery image:", error);
-    return NextResponse.json(
-      { error: "Failed to add gallery image" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json({
+    error: "Gallery management is temporarily disabled in production. Admin features available in local development."
+  }, { status: 503 });
 }
 
 export async function PUT(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { images }: { images: GalleryImage[] } = await request.json();
-
-    const data = readGalleryData();
-    data.images = images;
-    data.lastUpdated = new Date().toISOString();
-
-    writeGalleryData(data);
-
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("Error updating gallery:", error);
-    return NextResponse.json(
-      { error: "Failed to update gallery" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json({
+    error: "Gallery management is temporarily disabled in production. Admin features available in local development."
+  }, { status: 503 });
 }
 
 export async function DELETE(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const url = new URL(request.url);
-    const imageId = url.searchParams.get("id");
-
-    if (!imageId) {
-      return NextResponse.json({ error: "Image ID required" }, { status: 400 });
-    }
-
-    const data = readGalleryData();
-    data.images = data.images.filter(img => img.id !== imageId);
-    data.lastUpdated = new Date().toISOString();
-
-    writeGalleryData(data);
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Error deleting gallery image:", error);
-    return NextResponse.json(
-      { error: "Failed to delete gallery image" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json({
+    error: "Gallery management is temporarily disabled in production. Admin features available in local development."
+  }, { status: 503 });
 }
