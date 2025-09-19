@@ -1,33 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import fs from "fs";
-import path from "path";
-import { GalleryData, GalleryImage } from "@/types";
 
-const GALLERY_FILE = path.join(process.cwd(), "public/data/gallery.json");
+export const runtime = 'edge';
 
-function readGalleryData(): GalleryData {
-  try {
-    const data = fs.readFileSync(GALLERY_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    return { images: [], lastUpdated: new Date().toISOString() };
-  }
-}
-
-function writeGalleryData(data: GalleryData) {
-  const dir = path.dirname(GALLERY_FILE);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFileSync(GALLERY_FILE, JSON.stringify(data, null, 2));
-}
+// Static gallery data for read-only access
+const GALLERY_DATA = {
+  "images": [
+    {
+      "id": "art-1758303434881-1",
+      "url": "/Images/Art/212c84dc-0494-4fb2-950d-1a450d86abf6.jpg",
+      "title": "Art #2",
+      "description": "Beautiful art design",
+      "order": 0,
+      "createdAt": "2025-09-19T17:37:14.881Z",
+      "category": "Art"
+    },
+    {
+      "id": "art-1758303434880-0",
+      "url": "/Images/Art/0e24c8e1-ad42-4b6c-b538-672c737cec86.jpg",
+      "title": "Art #1",
+      "description": "Beautiful art design",
+      "order": 1,
+      "createdAt": "2025-09-19T17:37:14.880Z",
+      "category": "Art"
+    }
+  ],
+  "lastUpdated": "2025-09-19T19:46:08.689Z"
+};
 
 export async function GET() {
   try {
-    const data = readGalleryData();
-    return NextResponse.json(data);
+    return NextResponse.json(GALLERY_DATA);
   } catch (error) {
     console.error("Error reading gallery data:", error);
     return NextResponse.json(
