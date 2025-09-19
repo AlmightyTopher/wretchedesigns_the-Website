@@ -55,6 +55,11 @@ const config = {
           '5': 'hsl(var(--chart-5))'
         },
         // Techno-goth custom palette
+        "electric-purple": "#9B00FF",
+        "acid-magenta": "#FF00CC",
+        "neon-blue": "#001F3F",
+        "neon-magenta": "#FF00CC",
+        "matte-black": "#111111",
         electric: {
           purple: "#9B00FF",
         },

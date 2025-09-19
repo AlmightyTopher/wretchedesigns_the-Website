@@ -1,0 +1,11 @@
+{
+  "web": {
+    "client_id": "57848607243-o5omf12h5emrc3e64lk5073vianism1f.apps.googleusercontent.com",
+    "project_id": "gen-lang-client-0797048123",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "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",
+    "redirect_uris": ["https://www.wretchedesigns.com"]
+  }
+}

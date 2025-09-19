@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-electric-purple: #9B00FF;
+  --color-deep-neon-blue: #001F3F;
+  --color-acid-magenta: #FF00CC;
+  --color-matte-black: #111111;
+  --color-bg-charcoal: #181825;
+  --color-neon-shadow: 0 0 12px #9B00FF, 0 0 48px #FF00CC66;
+}
+
+body {
+  background: var(--color-matte-black);
+  color: #f7f7fa;
+  font-family: "Share Tech Mono", "Roboto", "sans-serif";
+  min-height: 100vh;
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.glitch-header, h1, h2, h3 {
+  font-family: "Orbitron", "Share Tech Mono", "Roboto", "sans-serif";
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.neon {
+  text-shadow: var(--color-neon-shadow);
+}
+
+.glitch {
+  position: relative;
+  color: var(--color-electric-purple);
+  text-shadow: 2px 2px 0 #FF00CC, -2px -2px 2px #001F3F, 0 0 6px #FF00CC;
+  animation: glitch 2s linear infinite alternate-reverse;
+}
+
+@keyframes glitch {
+  0% { transform: none; }
+  10% { transform: skew(-2deg, 2deg) translate(2px, -2px); }
+  20% { transform: skew(2deg, -3deg) translate(-3px, 2px); }
+  30% { transform: none; }
+  40% { transform: skew(-1deg, 1deg) translate(1px, 1px); }
+  50% { transform: none; }
+  100% { transform: none; }
+}
