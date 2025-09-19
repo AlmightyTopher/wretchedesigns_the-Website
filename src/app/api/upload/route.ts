@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import { writeFile, mkdir } from 'fs/promises';
 
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   try {
     const data = await request.formData();

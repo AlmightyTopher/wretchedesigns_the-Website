@@ -5,6 +5,8 @@ import fs from "fs";
 import path from "path";
 import { GalleryData, GalleryImage } from "@/types";
 
+export const runtime = 'edge';
+
 const GALLERY_FILE = path.join(process.cwd(), "public/data/gallery.json");
 
 function readGalleryData(): GalleryData {
