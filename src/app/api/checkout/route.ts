@@ -3,8 +3,6 @@ import { ProductData } from "@/types";
 import fs from "fs";
 import path from "path";
 
-export const runtime = 'edge';
-
 const PRODUCTS_FILE = path.join(process.cwd(), "public/data/products.json");
 
 function readProductData(): ProductData {

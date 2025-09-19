@@ -5,8 +5,6 @@ import fs from "fs";
 import path from "path";
 import { ProductData } from "@/types";
 
-export const runtime = 'edge';
-
 const PRODUCTS_FILE = path.join(process.cwd(), "public/data/products.json");
 
 function readProductData(): ProductData {

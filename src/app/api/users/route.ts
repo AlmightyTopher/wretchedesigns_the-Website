@@ -4,8 +4,6 @@ import { authOptions } from "@/lib/auth";
 import fs from "fs";
 import path from "path";
 
-export const runtime = 'edge';
-
 interface User {
   id: string;
   name: string;
