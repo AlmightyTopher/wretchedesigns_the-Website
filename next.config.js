@@ -48,39 +48,18 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      // HTML extensions redirect to same page without .html
+      // Serve static HTML files for main site routes (NOT admin routes)
       {
-        source: '/gallery.html',
-        destination: '/gallery',
+        source: '/',
+        destination: '/index.html',
       },
-      {
-        source: '/shop.html',
-        destination: '/shop',
-      },
-      {
-        source: '/about.html',
-        destination: '/about',
-      },
-      {
-        source: '/contact.html',
-        destination: '/contact',
-      },
-      {
-        source: '/blogs.html',
-        destination: '/blogs',
-      },
-      {
-        source: '/index.html',
-        destination: '/',
-      },
-      // Main routes
       {
         source: '/gallery',
-        destination: '/gallery',
+        destination: '/gallery.html',
       },
       {
         source: '/shop',
-        destination: '/shop',
+        destination: '/shop.html',
       },
       {
         source: '/about',

@@ -1,40 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import fs from "fs";
+import path from "path";
+import { ProductData, Product } from "@/types";
 
-export const runtime = 'edge';
+const PRODUCTS_FILE = path.join(process.cwd(), "public/data/products.json");
 
-// Static product data for read-only access
-const PRODUCT_DATA = {
-  "products": [
-    {
-      "id": "art-1758303434886-0",
-      "name": "Art Design #1",
-      "description": "Beautiful original artwork and designs. Unique design with vibrant colors.",
-      "price": 15.2,
-      "image": "/uploads/1758311236103-557ad263-e5d1-415a-93e0-fcf33a3cc114.png",
-      "category": "Art",
-      "inStock": true,
-      "createdAt": "2025-09-19T17:37:14.886Z",
-      "updatedAt": "2025-09-19T19:48:54.052Z"
-    },
-    {
-      "id": "art-1758303434886-1",
-      "name": "Art Design #2",
-      "description": "Beautiful original artwork and designs. Unique design with vibrant colors.",
-      "price": 18.43,
-      "image": "/Images/Art/212c84dc-0494-4fb2-950d-1a450d86abf6.jpg",
-      "category": "Art",
-      "inStock": true,
-      "createdAt": "2025-09-19T17:37:14.886Z",
-      "updatedAt": "2025-09-19T17:37:14.886Z"
-    }
-  ],
-  "paymentsEnabled": false,
-  "lastUpdated": "2025-09-19T19:48:54.052Z"
-};
+function readProductData(): ProductData {
+  try {
+    const data = fs.readFileSync(PRODUCTS_FILE, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    return {
+      products: [],
+      paymentsEnabled: false,
+      lastUpdated: new Date().toISOString()
+    };
+  }
+}
+
+function writeProductData(data: ProductData) {
+  const dir = path.dirname(PRODUCTS_FILE);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(data, null, 2));
+}
+
 
 export async function GET() {
   try {
-    return NextResponse.json(PRODUCT_DATA);
+    const data = readProductData();
+    return NextResponse.json(data);
   } catch (error) {
     console.error("Error reading product data:", error);
     return NextResponse.json(
