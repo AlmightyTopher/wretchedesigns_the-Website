@@ -1,0 +1,105 @@
+{
+  "products": [
+    {
+      "id": "art-1758303434886-0",
+      "name": "Art Design #1",
+      "description": "Beautiful original artwork and designs. Unique design with vibrant colors.",
+      "price": 15.2,
+      "image": "/uploads/1758311236103-557ad263-e5d1-415a-93e0-fcf33a3cc114.png",
+      "category": "Art",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.886Z",
+      "updatedAt": "2025-09-19T19:48:54.052Z"
+    },
+    {
+      "id": "art-1758303434886-1",
+      "name": "Art Design #2",
+      "description": "Beautiful original artwork and designs. Unique design with vibrant colors.",
+      "price": 18.43,
+      "image": "/Images/Art/212c84dc-0494-4fb2-950d-1a450d86abf6.jpg",
+      "category": "Art",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.886Z",
+      "updatedAt": "2025-09-19T17:37:14.886Z"
+    },
+    {
+      "id": "art-1758303434886-2",
+      "name": "Art Design #3",
+      "description": "Beautiful original artwork and designs. Unique design with vibrant colors.",
+      "price": 23.59,
+      "image": "/Images/Art/36f583e6-dae6-4858-a57e-b25c34e3b0da.jpg",
+      "category": "Art",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.886Z",
+      "updatedAt": "2025-09-19T17:37:14.886Z"
+    },
+    {
+      "id": "shirts-1758303434887-0",
+      "name": "Shirts Design #1",
+      "description": "High-quality custom printed t-shirts. Unique design with vibrant colors.",
+      "price": 31.64,
+      "image": "/Images/Shirts/6e6b35c8-59a0-4ac4-9489-b08e05475e87.jpg",
+      "category": "Apparel",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.887Z",
+      "updatedAt": "2025-09-19T17:37:14.887Z"
+    },
+    {
+      "id": "shirts-1758303434887-1",
+      "name": "Shirts Design #2",
+      "description": "High-quality custom printed t-shirts. Unique design with vibrant colors.",
+      "price": 28.8,
+      "image": "/Images/Shirts/bdb0f322-71fe-47d4-a980-e9866a89c344.jpg",
+      "category": "Apparel",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.887Z",
+      "updatedAt": "2025-09-19T17:37:14.887Z"
+    },
+    {
+      "id": "shirts-1758303434887-2",
+      "name": "Shirts Design #3",
+      "description": "High-quality custom printed t-shirts. Unique design with vibrant colors.",
+      "price": 34.83,
+      "image": "/Images/Shirts/f6dfff40-1017-4409-a45d-ff22c42d23f8.jpg",
+      "category": "Apparel",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.887Z",
+      "updatedAt": "2025-09-19T17:37:14.887Z"
+    },
+    {
+      "id": "cups-1758303434887-0",
+      "name": "Cups Design #1",
+      "description": "Custom designed coffee cups and mugs. Unique design with vibrant colors.",
+      "price": 17.71,
+      "image": "/Images/Cups/0769b870-babf-40e7-8a82-0682dc5abcfb.jpg",
+      "category": "Accessories",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.887Z",
+      "updatedAt": "2025-09-19T17:37:14.887Z"
+    },
+    {
+      "id": "cups-1758303434887-1",
+      "name": "Cups Design #2",
+      "description": "Custom designed coffee cups and mugs. Unique design with vibrant colors.",
+      "price": 12.77,
+      "image": "/Images/Cups/093a4006-4a4a-4e35-be30-6ef0a608f392.jpg",
+      "category": "Accessories",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.887Z",
+      "updatedAt": "2025-09-19T17:37:14.887Z"
+    },
+    {
+      "id": "cups-1758303434887-2",
+      "name": "Cups Design #3",
+      "description": "Custom designed coffee cups and mugs. Unique design with vibrant colors.",
+      "price": 16.62,
+      "image": "/Images/Cups/0a7dd23f-61ba-4ba0-b6f5-9435def573f5.jpg",
+      "category": "Accessories",
+      "inStock": true,
+      "createdAt": "2025-09-19T17:37:14.887Z",
+      "updatedAt": "2025-09-19T17:37:14.887Z"
+    }
+  ],
+  "paymentsEnabled": false,
+  "lastUpdated": "2025-09-19T19:48:54.052Z"
+}

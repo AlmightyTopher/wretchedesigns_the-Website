@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wretched Designs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header class="nav-header">
+            <nav class="container">
+                <div class="nav-brand">
+                    <span class="brand-text">Wretched</span>
+                    <span class="brand-secondary">Designs</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showPage('home')">Shop</a></li>
+                    <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+                    <li><a href="#" onclick="showPage('about')">About</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPage('blogs')">Blog</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="main-content">
+            <!-- Home Page -->
+            <section id="home-page" class="page active">
+                <div class="hero">
+                    <h1>Born from Chaos. Built to Disturb.</h1>
+                    <p>Custom Printed Apparel · Art & Relics · Nightlife For The Unrepentant</p>
+                    <div class="cta-buttons">
+                        <button onclick="showPage('shop')" class="cta-primary">Shop Now</button>
+                        <button onclick="showPage('gallery')" class="cta-secondary">View Art Gallery</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shop Page -->
+            <section id="shop-page" class="page">
+                <div class="container">
+                    <h2>Shop</h2>
+                    <div id="products-grid" class="products-grid">
+                        <!-- Products loaded dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Page -->
+            <section id="gallery-page" class="page">
+                <div class="container">
+                    <h2>Gallery</h2>
+                    <div id="gallery-grid" class="gallery-grid">
+                        <!-- Gallery items loaded dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Page -->
+            <section id="about-page" class="page">
+                <div class="container">
+                    <h2>About Wretched Designs</h2>
+                    <p>Wretched Designs emerged from the industrial waste of Portland's underground art scene, where creativity thrives amidst decay and innovation is born from chaos.</p>
+                </div>
+            </section>
+
+            <!-- Contact Page -->
+            <section id="contact-page" class="page">
+                <div class="container">
+                    <h2>Contact Us</h2>
+                    <p>Reach out to us through our social channels or drop us a message.</p>
+                </div>
+            </section>
+
+            <!-- Blogs Page -->
+            <section id="blogs-page" class="page">
+                <div class="container">
+                    <h2>Blog</h2>
+                    <p>Coming Soon...</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 ToperTek. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal-overlay" onclick="closeModal()">
+        <div class="modal-content">
+            <img class="modal-img" src="" alt="">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

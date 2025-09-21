@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database for Supabase
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: wretchedsecret2024
+      POSTGRES_DB: wretched_designs
+      POSTGRES_USER: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+  admin:
+    build:
+      context: ..
+      dockerfile: admin/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=production
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=ACBJrwfV4O2giDDsBBioaLaLxF6tdytv7gX6r23qD/s=
+      - GOOGLE_CLIENT_ID=57848607243-o5omf12h5emrc3e64lk5073vianism1f.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
+      - ADMIN_EMAILS=Topher@TopherTek.com,tophergutbrod@gmail.com,dogmansemail1@gmail.com
+      - DATABASE_URL=postgresql://postgres:wretchedsecret2024@postgres:5432/wretched_designs
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=wretched_designs
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=wretchedsecret2024
+      # Git configuration for deployment
+      - GIT_AUTHOR_NAME=Wretched Designs Admin
+      - GIT_AUTHOR_EMAIL=admin@wretchedesigns.com
+      - GIT_COMMITTER_NAME=Wretched Designs Admin
+      - GIT_COMMITTER_EMAIL=admin@wretchedesigns.com
+    volumes:
+      - admin_data:/app/public/data
+      - admin_uploads:/app/public/uploads
+      - admin_images:/app/public/Images
+      # Mount the entire project directory for Git operations
+      - ../:/app/project:rw
+
+volumes:
+  admin_data:
+    driver: local
+  admin_uploads:
+    driver: local
+  admin_images:
+    driver: local
+  postgres_data:
+    driver: local

@@ -6,7 +6,11 @@
       "Bash(git push:*)",
       "Bash(npm run dev:*)",
       "Bash(curl:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose:*)",
+      "Bash(cat:*)",
+      "Bash(npm run build-customer:*)"
     ],
     "deny": [],
     "ask": []

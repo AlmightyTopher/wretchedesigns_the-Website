@@ -4,32 +4,59 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the Wretched Designs website - a hybrid Next.js/static HTML e-commerce site with a cyberpunk/techno-goth aesthetic featuring custom printed apparel and art sales. The project combines Next.js infrastructure with static HTML pages for content delivery.
+This is the Wretched Designs website - a split-architecture e-commerce site with a cyberpunk/techno-goth aesthetic featuring custom printed apparel and art sales. The project implements a separation between customer-facing static site and admin management system.
 
-**Important**: This is a hybrid architecture where the main pages (index, shop, gallery, about, contact, blogs) are static HTML files in the root directory, not Next.js pages. The Next.js setup provides the build system, component library, and potentially API routes.
+**Architecture Overview**:
+- **Customer Site** (`customer/`): Static HTML/CSS/JS deployed to GitHub Pages + Cloudflare
+- **Admin System** (`admin/`): Next.js app with full content management, authentication, and Docker deployment
+- **Root Directory**: Contains shared Next.js configuration and legacy static files
 
 ## Development Commands
 
-### Basic Development
+### Customer Site Development
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start development server on localhost:3000
-npm run build        # Build for production (outputs to .next/)
-npm start            # Start production server
+cd customer/
+# Edit index.html, styles.css directly
+# No build process required - direct HTML/CSS/JS
+```
+
+### Admin System Development
+```bash
+cd admin/
+npm install          # Install admin dependencies
+npm run dev          # Start admin development server
+npm run build        # Build admin system
+```
+
+### Root Directory Commands
+```bash
+npm install          # Install shared dependencies (minimal)
+npm run dev          # Start development server (legacy)
+npm run build        # Build for production
+```
+
+### Docker Deployment (Admin System)
+```bash
+cd admin/
+docker-compose up -d # Start admin system in Docker
+docker-compose down  # Stop admin system
 ```
 
 ### Testing
 ```bash
-npm test             # Run vitest tests
+npm test             # Run vitest tests (configured in root)
 npm run test:ui      # Run vitest with UI
 ```
 
 ### Code Quality & Linting
 The project uses both Biome and ESLint for linting:
-- **Biome**: Primary linter configured in `biome.json` for TypeScript/TSX files in `src/`
+- **Biome**: Primary linter configured in `biome.json` for TypeScript/TSX files, focused on admin system
 - **ESLint**: Secondary linter with Next.js configuration in `eslint.config.mjs`
 
-Both tools have relaxed rules for rapid development (many a11y and strict rules disabled).
+Both tools have relaxed rules for rapid development:
+- All accessibility rules disabled
+- TypeScript strict rules disabled
+- React hooks rules disabled
 
 Note: ESLint is disabled during builds (`DISABLE_ESLINT_PLUGIN=true` in Netlify config).
 
@@ -42,10 +69,23 @@ python copy_and_download_media.py    # Download and organize media assets
 ```
 
 ### Deployment
-- **Primary**: Cloudflare Pages (production admin dashboard)
-- **Alternative**: Netlify (configured via `netlify.toml`)
-- **Domain**: www.wretchedesigns.com (configured for OAuth)
+
+#### Customer Site
+- **Platform**: GitHub Pages + Cloudflare CDN
+- **Source**: `customer/` directory
+- **Process**: Direct static file deployment via GitHub Actions
+- **URL**: www.wretchedesigns.com (public)
+
+#### Admin System
+- **Platform**: Docker container deployment
+- **Source**: `admin/` directory
+- **Process**: Docker Compose with Cloudflare Tunnel
+- **URL**: Secure admin access only
 - **Build command**: `SKIP_ENV_VALIDATION=true npm run build`
+
+#### Legacy/Root
+- **Alternative**: Netlify (configured via `netlify.toml`)
+- **Status**: Fallback deployment option
 
 ### Admin Dashboard (NEW - OPERATIONAL)
 - **URL**: https://www.wretchedesigns.com/admin
@@ -66,11 +106,22 @@ python copy_and_download_media.py    # Download and organize media assets
 - **UI Components**: Custom React components with Tailwind
 
 ### Page Structure
-- **Static HTML files**: `index.html`, `shop.html`, `gallery.html`, `about.html`, `contact.html`, `blogs.html`
-- **Next.js Admin App**: `/src/app/` with App Router structure
+
+#### Customer Site (`customer/`)
+- **Static HTML**: `index.html` (main customer page)
+- **Styling**: `styles.css` (standalone CSS)
+- **JavaScript**: Embedded in HTML (no external JS files)
+
+#### Admin System (`admin/`)
+- **Next.js App**: `/src/app/` with App Router structure
 - **Admin Routes**: `/admin/*` (protected by authentication)
 - **API Routes**: `/api/*` for gallery/product CRUD operations
-- **JavaScript functionality**: `main.js` (image modal system for static pages)
+- **Components**: `/src/components/` (React components)
+- **Public Assets**: `/public/` (admin-specific static files)
+
+#### Legacy Static Files (`admin/public/`)
+- **HTML files**: `index.html`, `shop.html`, `gallery.html`, `about.html`, `contact.html`, `blogs.html`
+- **JavaScript**: `main.js` (image modal system)
 - **Global styles**: `style.css` with embedded Tailwind classes
 
 ### Theme System
@@ -82,10 +133,19 @@ Custom cyberpunk color palette defined in `tailwind.config.ts`:
 - Custom neon shadow effects and glitch animations
 
 ### Key Configuration Files
-- `next.config.js`: Image domains for Unsplash, build error ignoring
-- `middleware.ts`: Route handling
-- `vitest.config.ts`: Test configuration with jsdom environment
-- `components.json`: shadcn/ui configuration
+
+#### Root Directory
+- `next.config.js`: Image optimization, build error ignoring, remote patterns for all hostnames
+- `vitest.config.ts`: Test configuration with jsdom environment, globals enabled
+- `biome.json`: Primary linter configuration (relaxed a11y rules)
+- `eslint.config.mjs`: Next.js ESLint configuration (strict rules disabled)
+- `netlify.toml`: Netlify deployment configuration (legacy)
+
+#### Admin System (`admin/`)
+- `tailwind.config.ts`: Cyberpunk theme colors and custom utilities
+- `next.config.js`: Admin-specific Next.js configuration
+- `docker-compose.yml`: Container deployment configuration
+- `tsconfig.json`: TypeScript configuration for admin app
 
 ## Development Notes
 
@@ -140,10 +200,22 @@ The project includes a comprehensive TODO.md file with prioritized tasks and "Ju
 - **Payment Toggle**: `/api/payments/toggle` (admin control for enabling payments)
 
 ### Development Workflow
+
+#### Customer Site Updates
+1. **Direct Editing**: Modify `customer/index.html` and `customer/styles.css`
+2. **Commit & Push**: Changes automatically deploy via GitHub Actions
+3. **Cache Purge**: Cloudflare cache automatically purged
+
+#### Admin System Changes
+1. **Local Development**: Work in `admin/src/` with `npm run dev`
+2. **Docker Deployment**: Use `docker-compose up -d` for production
+3. **Content Management**: Use web interface at `/admin` for data updates
+
+#### Content Management (No Code Required)
 1. **Admin Changes**: Made through web interface at `/admin`
 2. **Data Updates**: JSON files updated in real-time
 3. **Public Reflection**: Static pages immediately show changes
-4. **No Code Changes**: Content management requires no developer intervention
+4. **Deploy Button**: "🚀 Finalize & Deploy Live" triggers automated deployment
 
 ### Environment Configuration
 ```bash

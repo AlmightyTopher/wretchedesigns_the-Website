@@ -1,0 +1,120 @@
+_format_version: "1.1"
+
+services:
+  - name: auth-v1-open
+    url: http://auth:9999/verify
+    plugins:
+      - name: cors
+  - name: auth-v1-open-callback
+    url: http://auth:9999/callback
+    plugins:
+      - name: cors
+  - name: auth-v1-open-authorize
+    url: http://auth:9999/authorize
+    plugins:
+      - name: cors
+
+  - name: auth-v1
+    _comment: "GoTrue: /auth/v1/* -> http://auth:9999/*"
+    url: http://auth:9999/
+    plugins:
+      - name: cors
+
+  - name: rest-v1
+    _comment: "PostgREST: /rest/v1/* -> http://rest:3000/*"
+    url: http://rest:3000/
+    plugins:
+      - name: cors
+
+  - name: realtime-v1
+    _comment: "Realtime: /realtime/v1/* -> ws://realtime:4000/socket/*"
+    url: http://realtime:4000/socket/
+    plugins:
+      - name: cors
+
+  - name: storage-v1
+    _comment: "Storage: /storage/v1/* -> http://storage:5000/*"
+    url: http://storage:5000/
+    plugins:
+      - name: cors
+
+  - name: edge-functions-v1
+    _comment: "Edge Functions: /functions/v1/* -> http://edge-runtime:9000/*"
+    url: http://edge-runtime:9000/
+    plugins:
+      - name: cors
+
+routes:
+  - name: auth-v1-open
+    service: auth-v1-open
+    paths:
+      - "/auth/v1/verify"
+    strip_path: true
+
+  - name: auth-v1-open-callback
+    service: auth-v1-open-callback
+    paths:
+      - "/auth/v1/callback"
+    strip_path: true
+
+  - name: auth-v1-open-authorize
+    service: auth-v1-open-authorize
+    paths:
+      - "/auth/v1/authorize"
+    strip_path: true
+
+  - name: auth-v1
+    service: auth-v1
+    paths:
+      - "/auth/v1/"
+    strip_path: true
+
+  - name: rest-v1
+    service: rest-v1
+    paths:
+      - "/rest/v1/"
+    strip_path: true
+
+  - name: realtime-v1
+    service: realtime-v1
+    paths:
+      - "/realtime/v1/"
+    strip_path: true
+
+  - name: storage-v1
+    service: storage-v1
+    paths:
+      - "/storage/v1/"
+    strip_path: true
+
+  - name: edge-functions-v1
+    service: edge-functions-v1
+    paths:
+      - "/functions/v1/"
+    strip_path: true
+
+plugins:
+  - name: cors
+    config:
+      origins:
+        - "*"
+      methods:
+        - GET
+        - HEAD
+        - PUT
+        - PATCH
+        - POST
+        - DELETE
+        - OPTIONS
+      headers:
+        - Accept
+        - Accept-Version
+        - Content-Length
+        - Content-MD5
+        - Content-Type
+        - Date
+        - X-Auth-Token
+        - Authorization
+        - X-Requested-With
+      credentials: true
+      max_age: 3600
