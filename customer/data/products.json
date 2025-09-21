@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": "prod-art-001",
+      "name": "Cyberpunk Art Print #1",
+      "description": "High-quality digital art print with cyberpunk aesthetic. Perfect for your workspace or gaming setup.",
+      "price": 29.99,
+      "image": "./Images/Art/212c84dc-0494-4fb2-950d-1a450d86abf6.jpg",
+      "category": "Art",
+      "in_stock": true
+    },
+    {
+      "id": "prod-art-002",
+      "name": "Cyberpunk Art Print #2",
+      "description": "High-quality digital art print with cyberpunk aesthetic. Bold colors and futuristic design.",
+      "price": 29.99,
+      "image": "./Images/Art/0e24c8e1-ad42-4b6c-b538-672c737cec86.jpg",
+      "category": "Art",
+      "in_stock": true
+    },
+    {
+      "id": "prod-cup-001",
+      "name": "Neon Glow Coffee Cup",
+      "description": "Custom printed coffee cup with neon glow design. Dishwasher safe ceramic construction.",
+      "price": 19.99,
+      "image": "./Images/Cups/0769b870-babf-40e7-8a82-0682dc5abcfb.jpg",
+      "category": "Cups",
+      "in_stock": true
+    },
+    {
+      "id": "prod-shirt-001",
+      "name": "Techno Gothic T-Shirt",
+      "description": "Premium quality t-shirt with techno gothic print. 100% cotton, available in multiple sizes.",
+      "price": 24.99,
+      "image": "./Images/Shirts/6e6b35c8-59a0-4ac4-9489-b08e05475e87.jpg",
+      "category": "Shirts",
+      "in_stock": true
+    }
+  ],
+  "lastUpdated": "2025-09-21T19:07:00.000Z"
+}
